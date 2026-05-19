@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="ROTO CLUB - La mejor experiencia nocturna. Música, eventos, reservas. Vive la noche como nunca.">
+    <meta name="keywords" content="discoteca, bar, nocturno, DJ, música electrónica, fiesta, eventos, reservas">
+    <meta name="author" content="ROTO CLUB">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="ROTO CLUB - La noche es tuya">
+    <meta property="og:description" content="Entra y siente la música en ROTO CLUB. La mejor experiencia nocturna te espera.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    
+    <meta name="theme-color" content="#ff0099">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23000'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='50' font-family='sans-serif' fill='%230088ff'%3E♫%3C/text%3E%3C/svg%3E">
+    
+    <title>ROTO CLUB - La noche es tuya</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-logo">ROTO CLUB</div>
+    </div>
+
+    <div class="particles" id="particles"></div>
+    <div class="overlay"></div>
+    <div class="lights" id="lights"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo neon-text-small">ROTO CLUB</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">Inicio</a></li>
+                <li><a href="#about" class="nav-link">Sobre Nosotros</a></li>
+                <li><a href="#events" class="nav-link">Eventos</a></li>
+                <li><a href="#gallery" class="nav-link">Galería</a></li>
+                <li><a href="#reservation" class="nav-link">Reservas</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="hero-content">
+            <h1 class="neon-text" data-text="ROTO CLUB">ROTO CLUB</h1>
+            <p class="subtitle">La noche es tuya</p>
+            <div class="hero-buttons">
+                <button id="toggleMusic" class="glow-btn btn-primary">
+                    <span class="btn-icon">🎵</span>
+                    <span class="btn-text">Encender Música</span>
+                </button>
+                <a href="#reservation" class="glow-btn btn-secondary">
+                    <span class="btn-icon">📅</span>
+                    <span class="btn-text">Reservar Mesa</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section about-section">
+            <div class="container">
+                <h2 class="section-title">Sobre Nosotros</h2>
+                <div class="about-grid">
+                    <div class="glass-card">
+                        <div class="card-icon">🎧</div>
+                        <h3>Sonido Profesional</h3>
+                        <p>Sistema de audio de última generación que hará vibrar cada célula de tu cuerpo.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div class="card-icon">💡</div>
+                        <h3>Efectos Visuales</h3>
+                        <p>Luces láser, pantallas LED y efectos especiales que transformarán la noche.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div class="card-icon">🍸</div>
+                        <h3>Coctelería Premium</h3>
+                        <p>Nuestros bartenders preparan los cócteles más exclusivos para tu disfrute.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="section events-section">
+            <div class="container">
+                <h2 class="section-title">Eventos de la Semana</h2>
+                <div class="events-grid">
+                    <div class="glass-card event-card">
+                        <div class="event-image">
+                            <img src="imagenes/LaZowi.jpg" alt="La Zowi" loading="lazy">
+                        </div>
+                        <div class="event-day">JUEVES</div>
+                        <div class="event-info">
+                            <h3>Jueves Universitario</h3>
+                            <p class="event-genre">Urbano Latino</p>
+                            <p class="event-time">00:00 - 02:00 Entrada Libre / 02:00+ Entrada de Pago</p>
+                        </div>
+                        <span class="event-badge">Entrada Libre</span>
+                    </div>
+                    <div class="glass-card event-card">
+                        <div class="event-image">
+                            <img src="imagenes/Lorna.jpg" alt="DJ L0rna" loading="lazy">
+                        </div>
+                        <div class="event-day">VIERNES</div>
+                        <div class="event-info">
+                            <h3>Blancanieves</h3>
+                            <p class="event-genre">Pop / Electrónica</p>
+                            <p class="event-time">Desde las 23:00</p>
+                        </div>
+                        <span class="event-badge">VIP Disponible</span>
+                    </div>
+                    <div class="glass-card event-card">
+                        <div class="event-image">
+                            <img src="imagenes/Metrika.jpg" alt="Metrika" loading="lazy">
+                        </div>
+                        <div class="event-day">SÁBADO</div>
+                        <div class="event-info">
+                            <h3>La Madre Fundadora</h3>
+                            <p class="event-genre">Reggaetón / Dembow</p>
+                            <p class="event-time">Desde las 22:00</p>
+                        </div>
+                        <span class="event-badge">Piscina Abierta</span>
+                    </div>
+                    <div class="glass-card event-card">
+                        <div class="event-image">
+                            <img src="imagenes/MafiaDelAmor.jpg" alt="La Mafia del Amor" loading="lazy">
+                        </div>
+                        <div class="event-day">DOMINGO</div>
+                        <div class="event-info">
+                            <h3>GatitaMultiorgasmica</h3>
+                            <p class="event-genre">Perreo / Reggaetón</p>
+                            <p class="event-time">Desde las 21:00</p>
+                        </div>
+                        <span class="event-badge">Beso con un colega → Chupito Gratis 🍺</span>
+                    </div>
+                </div>
+                
+                <div class="countdown-wrapper glass-card">
+                    <h3>Próxima Apertura</h3>
+                    <div id="countdown">
+                        <div class="countdown-unit">
+                            <span id="hours" class="countdown-num">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-unit">
+                            <span id="minutes" class="countdown-num">00</span>
+                            <span class="countdown-label">Minutos</span>
+                        </div>
+                        <span class="countdown-sep">:</span>
+                        <div class="countdown-unit">
+                            <span id="seconds" class="countdown-num">00</span>
+                            <span class="countdown-label">Segundos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <h2 class="section-title">Galería</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item glass-card" style="background-image: url('https://images.unsplash.com/photo-1571266028243-e4733b0f0c24?w=600&h=500&fit=crop');">
+                        <div class="gallery-overlay">
+                            <span>🎧</span>
+                            <p>Noches épicas en ROTO CLUB</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card" style="background-image: url('https://images.unsplash.com/photo-1574169208507-84376144848b?w=600&h=500&fit=crop');">
+                        <div class="gallery-overlay">
+                            <span>🎵</span>
+                            <p>DJ's internacionales</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=500&fit=crop');">
+                        <div class="gallery-overlay">
+                            <span>✨</span>
+                            <p>Efectos especiales</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card" style="background-image: url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&h=500&fit=crop');">
+                        <div class="gallery-overlay">
+                            <span>🍾</span>
+                            <p>VIP Experience</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card" style="background-image: url('https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&h=500&fit=crop');">
+                        <div class="gallery-overlay">
+                            <span>🎪</span>
+                            <p>Eventos temáticos</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item glass-card" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=500&fit=crop');">
+                        <div class="gallery-overlay">
+                            <span>🎉</span>
+                            <p>Ambiente único</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reservation" class="section reservation-section">
+            <div class="container">
+                <h2 class="section-title">Reserva Tu Mesa</h2>
+                <form id="reservationForm" class="glass-card form-card">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+34 600 000 000" required>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Fecha</label>
+                            <input type="date" id="date" name="date" required>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Hora</label>
+                            <select id="time" name="time" required>
+                                <option value="">Seleccionar hora</option>
+                                <option value="22:00">22:00</option>
+                                <option value="22:30">22:30</option>
+                                <option value="23:00">23:00</option>
+                                <option value="23:30">23:30</option>
+                                <option value="00:00">00:00</option>
+                            </select>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Número de personas</label>
+                            <select id="guests" name="guests" required>
+                                <option value="">Seleccionar</option>
+                                <option value="2">2 personas</option>
+                                <option value="4">4 personas</option>
+                                <option value="6">6 personas</option>
+                                <option value="8">8 personas</option>
+                                <option value="10+">10+ personas</option>
+                            </select>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="message">Mensaje (opcional)</label>
+                            <textarea id="message" name="message" placeholder="Alguna preferencia o celebración especial..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="glow-btn btn-primary">
+                            <span class="btn-icon">📨</span>
+                            <span class="btn-text">Confirmar Reserva</span>
+                        </button>
+                    </div>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <h2 class="section-title">Contacto & Ubicación</h2>
+                <div class="contact-grid">
+                    <div class="glass-card contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <h4>Dirección</h4>
+                                <p>Av. d'Ausiàs March, 18</p>
+                                <p>46006 València, Valencia</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p>96 153 64 96</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hola@rotoclub.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🕐</span>
+                            <div>
+                                <h4>Horario</h4>
+                                <p>Jueves: 22:00 - 05:00</p>
+                                <p>Viernes: 22:00 - 06:00</p>
+                                <p>Sábado: 22:00 - 06:00</p>
+                                <p>Domingo: 21:00 - 02:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card map-placeholder">
+                        <div class="map-content">
+                            <span class="map-icon">🗺️</span>
+                            <h3>Encuéntranos</h3>
+                            <div class="map-container">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.123!2d-0.374!3d39.469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604f4c1c3f6b1d%3A0x6c1f8b1c9e3f6b1d!2sAv.%20d&#39;Ausi%C3%A0s%20March%2C%2018%2C%2046006%20Val%C3%A8ncia!5e0!3m2!1ses!2ses!4v1"
+                                    width="100%" height="280" style="border:0;border-radius:12px" 
+                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                            <a href="https://maps.google.com/?q=Av.+d'Ausiàs+March+18+Valencia" target="_blank" class="glow-btn btn-secondary" style="margin-top:1rem">
+                                <span>Ver en Google Maps</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="neon-text-small">ROTO CLUB</h3>
+                    <p>La experiencia nocturna definitiva. Música, luz y energía desde 2020.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter/X">🐦</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Sobre Nosotros</a></li>
+                        <li><a href="#events">Eventos</a></li>
+                        <li><a href="#gallery">Galería</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#reservation">Reservas</a></li>
+                        <li><a href="#">Mesas VIP</a></li>
+                        <li><a href="#">Eventos Privados</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Accesibilidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 ROTO CLUB. Todos los derechos reservados.</p>
+                <p class="age-warning">+18 | Se requiere DNI válido</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop" class="scroll-top" aria-label="Volver arriba">
+        <span>↑</span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

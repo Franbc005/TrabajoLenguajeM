@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROTO CLUB - Propuesta de Mejora Digital</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --pri:#0088ff;
+  --sec:#00ffee;
+  --acc:#39ff14;
+  --pink:#ff1493;
+  --bg:#0a0a14;
+  --card:rgba(255,255,255,0.04);
+  --text:#fff;
+  --muted:#b0b0b0;
+  --font-display:'Orbitron',sans-serif;
+  --font-body:'Inter',sans-serif;
+}
+
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  overflow:hidden;
+  height:100vh;
+  background:radial-gradient(ellipse at 20% 30%, rgba(0,136,255,0.12),transparent 60%),
+              radial-gradient(ellipse at 80% 70%, rgba(0,255,238,0.08),transparent 60%),
+              var(--bg);
+}
+
+.slides{display:flex;transition:transform 0.6s cubic-bezier(0.22,1,0.36,1);height:100vh}
+.slide{min-width:100vw;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:4rem 6rem;position:relative;overflow-y:auto}
+
+.slide::-webkit-scrollbar{width:4px}
+.slide::-webkit-scrollbar-track{background:transparent}
+.slide::-webkit-scrollbar-thumb{background:var(--pri);border-radius:2px}
+
+/* Navigation */
+.nav-slides{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;gap:0.75rem;z-index:100;align-items:center;
+  background:rgba(10,10,20,0.85);backdrop-filter:blur(16px);
+  padding:0.75rem 1.5rem;border-radius:50px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.nav-slides .dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,0.2);cursor:pointer;
+  transition:all 0.3s;border:none;
+}
+.nav-slides .dot.active{background:var(--pri);box-shadow:0 0 15px var(--pri),0 0 30px var(--pri)}
+.nav-slides .dot:hover{background:rgba(255,255,255,0.5)}
+.nav-slides .nav-btn{
+  background:none;border:none;color:var(--muted);cursor:pointer;
+  font-size:1.2rem;padding:0.25rem 0.5rem;transition:0.3s;
+  font-family:var(--font-body);
+}
+.nav-slides .nav-btn:hover{color:var(--sec)}
+.nav-slides .counter{font-size:0.75rem;color:var(--muted);font-family:var(--font-display);letter-spacing:0.1em;min-width:50px;text-align:center}
+
+/* Slide content */
+.badge{
+  display:inline-block;padding:0.35rem 1.25rem;
+  background:linear-gradient(135deg,rgba(0,255,238,0.15),rgba(0,136,255,0.1));
+  border:1px solid rgba(0,255,238,0.4);border-radius:25px;
+  font-size:0.7rem;font-weight:600;letter-spacing:0.15em;
+  color:var(--sec);text-transform:uppercase;margin-bottom:1.5rem;
+  font-family:var(--font-display);
+}
+
+h1{
+  font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:900;letter-spacing:0.05em;margin-bottom:0.75rem;
+  background:linear-gradient(135deg,var(--pri),var(--sec),var(--acc));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+h2{
+  font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.5rem);
+  margin-bottom:2rem;letter-spacing:0.05em;
+  background:linear-gradient(90deg,var(--pri),var(--sec));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+h3{
+  font-family:var(--font-display);font-size:1rem;margin-bottom:0.5rem;
+  color:var(--sec);letter-spacing:0.05em;
+}
+
+p{color:var(--muted);line-height:1.7;font-size:1rem;max-width:700px}
+.sub{color:var(--muted);font-size:0.9rem;line-height:1.6}
+
+/* Cards grid */
+.grid{display:grid;gap:1.5rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+
+.card{
+  background:var(--card);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.06);border-radius:16px;
+  padding:1.75rem;transition:0.4s;
+}
+.card:hover{background:rgba(0,0,0,0.3);border-color:rgba(0,255,238,0.2);transform:translateY(-4px)}
+.card .icon{font-size:2rem;margin-bottom:0.75rem;display:block}
+.card p{font-size:0.85rem;color:var(--muted)}
+.card h4{font-family:var(--font-display);font-size:0.9rem;margin-bottom:0.5rem;letter-spacing:0.05em}
+
+/* Wireframe */
+.wireframe{
+  background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:1.25rem;font-family:monospace;
+  font-size:0.7rem;line-height:1.4;color:var(--muted);white-space:pre;
+  overflow:auto;max-height:380px;
+}
+.wireframe .hl{color:var(--sec)}
+.wireframe .hl2{color:var(--pri)}
+.wireframe .hl3{color:var(--pink)}
+
+.cols{display:flex;gap:2rem;align-items:flex-start}
+.col{flex:1}
+
+/* Lists */
+ul{list-style:none;padding:0}
+ul li{padding:0.4rem 0;color:var(--muted);font-size:0.9rem;padding-left:1.5rem;position:relative}
+ul li::before{content:'▸';position:absolute;left:0;color:var(--pri)}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:0.85rem}
+td,th{padding:0.75rem 1rem;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+th{font-family:var(--font-display);color:var(--sec);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase}
+td{color:var(--muted)}
+
+/* Big number */
+.big-num{font-family:var(--font-display);font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--pri),var(--sec));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-label{font-size:0.75rem;color:var(--muted);margin-top:0.5rem}
+
+/* Brand slide */
+.brand-slide{text-align:center;align-items:center}
+.brand-slide .logo-big{
+  font-family:var(--font-display);font-size:clamp(3rem,10vw,7rem);
+  font-weight:900;letter-spacing:0.15em;margin-bottom:0.5rem;
+  text-shadow:0 0 20px var(--pri),0 0 40px var(--pri),0 0 80px var(--pri);
+  animation:glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 20px var(--pri),0 0 40px var(--pri)}
+  to{text-shadow:0 0 30px var(--sec),0 0 60px var(--sec),0 0 90px var(--pri)}
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .slide{padding:3rem 2rem}
+  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-2{grid-template-columns:1fr}
+  .cols{flex-direction:column}
+  h1{font-size:clamp(1.8rem,6vw,2.5rem)}
+  table{font-size:0.75rem}
+  td,th{padding:0.5rem}
+}
+
+@media(max-width:600px){
+  .slide{padding:2rem 1.5rem}
+  .grid-3,.grid-4,.grid-2{grid-template-columns:1fr}
+  .nav-slides{padding:0.5rem 1rem;gap:0.5rem}
+  .wireframe{font-size:0.55rem;padding:0.75rem}
+}
+
+/* Scroll inside slide if content is tall */
+.slide-content{max-width:1100px;margin:0 auto;width:100%}
+.scrollable{overflow-y:auto;flex:1;padding-right:0.5rem}
+
+.tag{
+  display:inline-block;padding:0.2rem 0.75rem;border-radius:12px;
+  font-size:0.7rem;font-weight:500;margin:0.15rem;
+  background:rgba(0,136,255,0.15);color:var(--pri);border:1px solid rgba(0,136,255,0.2);
+}
+.tag.sec{background:rgba(0,255,238,0.15);color:var(--sec);border-color:rgba(0,255,238,0.2)}
+.tag.acc{background:rgba(57,255,20,0.15);color:var(--acc);border-color:rgba(57,255,20,0.2)}
+</style>
+</head>
+<body>
+
+<div class="slides" id="slides">
+
+  <!-- SLIDE 1: Portada -->
+  <section class="slide brand-slide">
+    <div class="slide-content">
+      <div class="badge">Consultoría Digital 2026</div>
+      <div class="logo-big">ROTO CLUB</div>
+      <p style="font-size:1.4rem;color:var(--muted);letter-spacing:0.3em;text-transform:uppercase;font-family:var(--font-display);margin-bottom:2rem">La noche es tuya</p>
+      <p style="font-size:1rem;color:var(--muted);max-width:600px;margin:0 auto 2rem">
+        Propuesta de mejora digital — Transformación de la presencia online
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <span class="tag">HTML5</span>
+        <span class="tag sec">CSS3</span>
+        <span class="tag acc">JavaScript</span>
+        <span class="tag">SEO</span>
+        <span class="tag sec">UX/UI</span>
+      </div>
+      <p style="margin-top:3rem;font-size:0.8rem;color:rgba(255,255,255,0.3)">← Usa las teclas de flecha o los botones de navegación →</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: Análisis Inicial -->
+  <section class="slide">
+    <div class="slide-content">
+      <div class="badge">Fase 1</div>
+      <h2>Análisis Inicial</h2>
+      <div class="grid grid-3" style="margin-bottom:2rem">
+        <div class="card">
+          <span class="icon">🎵</span>
+          <h4>¿Qué vende?</h4>
+          <p>Ocio nocturno premium en Valencia: música en vivo, coctelería, zona VIP, piscina y eventos temáticos semanales.</p>
+        </div>
+        <div class="card">
+          <span class="icon">👥</span>
+          <h4>Público Objetivo</h4>
+          <p>Jóvenes 18-35: universitarios (Jueves), profesionales (VIP), grupos para celebraciones y cumpleaños.</p>
+        </div>
+        <div class="card">
+          <span class="icon">📱</span>
+          <h4>Situación Digital</h4>
+          <p>Sin web propia. Reservas solo por WhatsApp/DM. Sin presencia en Google. Dependencia total de redes sociales.</p>
+        </div>
+      </div>
+      <table>
+        <tr><th>Indicador</th><th>Situación Actual</th><th>Problema</th></tr>
+        <tr><td>Página web</td><td>No existe</td><td>Pérdida de clientes que buscan online</td></tr>
+        <tr><td>Reservas</td><td>WhatsApp / DM manual</td><td>Lentitud, errores, fuera de horario</td></tr>
+        <tr><td>SEO</td><td>Inexistente</td><td>No aparece en Google "discoteca Valencia"</td></tr>
+        <tr><td>Imagen de marca</td><td>Solo redes sociales</td><td>Percepción menos profesional</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Propuesta de Mejora -->
+  <section class="slide">
+    <div class="slide-content">
+      <div class="badge">Fase 2</div>
+      <h2>Propuesta de Mejora</h2>
+      <div class="grid grid-2" style="margin-bottom:1.5rem">
+        <div class="card">
+          <h4>🎯 Objetivos</h4>
+          <ul>
+            <li>Web profesional con identidad de marca inmersiva</li>
+            <li>Captar reservas online 24/7 sin intervención manual</li>
+            <li>Posicionar en Google (SEO local)</li>
+            <li>Reducir carga operativa del personal</li>
+            <li>Fidelizar con experiencia digital única</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>📈 Beneficios para el Negocio</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.5rem">
+            <div><div class="big-num" style="font-size:2rem">+40%</div><div class="stat-label" style="font-size:0.7rem">Más reservas</div></div>
+            <div><div class="big-num" style="font-size:2rem">24/7</div><div class="stat-label" style="font-size:0.7rem">Captación continua</div></div>
+            <div><div class="big-num" style="font-size:2rem">-0</div><div class="stat-label" style="font-size:0.7rem">Coste extra en personal</div></div>
+            <div><div class="big-num" style="font-size:2rem">✔</div><div class="stat-label" style="font-size:0.7rem">Imagen premium</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="padding:1rem 1.5rem">
+        <p style="font-size:0.85rem;color:var(--sec)"><strong>Estrategia:</strong> De Instagram → Web → Reserva → Fidelización. La web es el centro del embudo digital.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: Funcionalidades -->
+  <section class="slide">
+    <div class="slide-content">
+      <div class="badge">Fase 3</div>
+      <h2>Funcionalidades de la Web</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="icon">🏠</span>
+          <h4>Landing Inmersiva</h4>
+          <p>Hero con tipografía neon, partículas animadas, efecto discoteca interactivo y countdown a próxima apertura.</p>
+        </div>
+        <div class="card">
+          <span class="icon">📅</span>
+          <h4>Eventos Semanales</h4>
+          <p>Catálogo visual con imágenes, horarios, géneros musicales y badges promocionales (Entrada Libre, VIP).</p>
+        </div>
+        <div class="card">
+          <span class="icon">📋</span>
+          <h4>Reservas Online</h4>
+          <p>Formulario validado con nombre, email, teléfono, fecha, hora y nº de personas. Confirmación instantánea.</p>
+        </div>
+        <div class="card">
+          <span class="icon">🖼️</span>
+          <h4>Galería Interactiva</h4>
+          <p>Grid visual con hover effects, overlays informativos y enlace a redes sociales.</p>
+        </div>
+        <div class="card">
+          <span class="icon">📍</span>
+          <h4>Contacto + Mapa</h4>
+          <p>Dirección, teléfono, email, horario completo y enlace directo a Google Maps.</p>
+        </div>
+        <div class="card">
+          <span class="icon">📱</span>
+          <h4>Diseño Responsive</h4>
+          <p>Adaptado a móvil, tablet y escritorio. Menú hamburguesa, navegación smooth y scroll spy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: Boceto / Wireframe -->
+  <section class="slide">
+    <div class="slide-content">
+      <div class="badge">Diseño</div>
+      <h2>Boceto / Wireframe</h2>
+      <div class="cols">
+        <div class="col" style="flex:1.2">
+          <div class="wireframe">
+            ┌─────────────────────────────────────────────────┐
+            │  <span class="hl">[NAV]</span>  ROTO CLUB  | Inicio | Eventos | Reservas│
+            ├─────────────────────────────────────────────────┤
+            │                                                 │
+            │      <span class="hl2">░░░ ROTO CLUB ░░░</span>                    │
+            │         <span class="hl3">"La noche es tuya"</span>                   │
+            │   [🎵 Encender Música] [📅 Reservar Mesa]      │
+            │                                                 │
+            ├─────────────────────────────────────────────────┤
+            │  <span class="hl">Sobre Nosotros</span>                              │
+            │  ┌──────────┐ ┌──────────┐ ┌──────────┐        │
+            │  │ Sonido   │ │ Visuales │ │ Cocteler│        │
+            │  │ Profes.  │ │ LED      │ │ Premium │        │
+            │  └──────────┘ └──────────┘ └──────────┘        │
+            ├─────────────────────────────────────────────────┤
+            │  <span class="hl">Eventos Semanales</span>                          │
+            │  ┌────┐ ┌────┐ ┌────┐ ┌────┐                  │
+            │  │JUE │ │VIE │ │SAB │ │DOM │                  │
+            │  └────┘ └────┘ └────┘ └────┘                  │
+            │  ⏱ <span class="hl2">Próxima apertura: 05:23:17</span>              │
+            ├─────────────────────────────────────────────────┤
+            │  <span class="hl">Reserva Tu Mesa</span>                            │
+            │  ┌──────────────────────────────┐              │
+            │  │ Nombre | Email | Teléfono    │              │
+            │  │ Fecha  | Hora  | Personas    │              │
+            │  │ [✅ Confirmar Reserva]       │              │
+            │  └──────────────────────────────┘              │
+            ├─────────────────────────────────────────────────┤
+            │  <span class="hl">Contacto</span> 📍 Ausiàs March 18 · Valencia      │
+            │  📞 96 153 64 96 · ✉️ hola@rotoclub.com         │
+            ├─────────────────────────────────────────────────┤
+            │  © 2026 ROTO CLUB · +18 · Privacidad           │
+            └─────────────────────────────────────────────────┘
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h4>📐 Estructura de navegación</h4>
+            <p style="font-size:0.85rem">Arquitectura de una sola página (SPA) con scroll suave entre secciones:</p>
+            <div style="margin-top:1rem">
+              <div style="display:flex;flex-direction:column;gap:0.4rem">
+                <div style="padding:0.5rem 1rem;background:rgba(0,136,255,0.1);border-radius:8px;border-left:3px solid var(--pri);font-size:0.8rem">Inicio — Hero + Efectos</div>
+                <div style="padding:0.5rem 1rem;background:rgba(0,255,238,0.1);border-radius:8px;border-left:3px solid var(--sec);font-size:0.8rem">Sobre Nosotros — Cards servicios</div>
+                <div style="padding:0.5rem 1rem;background:rgba(57,255,20,0.1);border-radius:8px;border-left:3px solid var(--acc);font-size:0.8rem">Eventos — Catálogo semanal</div>
+                <div style="padding:0.5rem 1rem;background:rgba(255,20,147,0.1);border-radius:8px;border-left:3px solid var(--pink);font-size:0.8rem">Galería — Grid interactivo</div>
+                <div style="padding:0.5rem 1rem;background:rgba(0,136,255,0.1);border-radius:8px;border-left:3px solid var(--pri);font-size:0.8rem">Reservas — Formulario</div>
+                <div style="padding:0.5rem 1rem;background:rgba(0,255,238,0.1);border-radius:8px;border-left:3px solid var(--sec);font-size:0.8rem">Contacto — Info + Mapa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: Stack Tecnológico -->
+  <section class="slide">
+    <div class="slide-content">
+      <div class="badge">Tecnología</div>
+      <h2>Stack Tecnológico</h2>
+      <div class="grid grid-4" style="margin-bottom:2rem">
+        <div class="card" style="text-align:center">
+          <span class="icon" style="font-size:2.5rem">🌐</span>
+          <h4>HTML5</h4>
+          <p>Estructura semántica, Open Graph, SEO, accesibilidad</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <span class="icon" style="font-size:2.5rem">🎨</span>
+          <h4>CSS3</h4>
+          <p>Glassmorphism, gradientes, animaciones, responsive</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <span class="icon" style="font-size:2.5rem">⚡</span>
+          <h4>JavaScript</h4>
+          <p>Vanilla JS: partículas, formularios, countdown, scroll</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <span class="icon" style="font-size:2.5rem">🚀</span>
+          <h4>GitHub Pages</h4>
+          <p>Hosting gratuito, HTTPS, despliegue continuo</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:1rem">
+        <p style="font-size:0.85rem;color:var(--muted)">Sin dependencias externas · Sin frameworks · Carga ultrarrápida</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Cierre -->
+  <section class="slide brand-slide">
+    <div class="slide-content">
+      <div class="badge">Conclusión</div>
+      <div class="logo-big" style="font-size:clamp(2rem,6vw,4rem)">GRACIAS</div>
+      <p style="font-size:1.2rem;color:var(--muted);margin-bottom:2rem">¿Listos para llevar ROTO CLUB al siguiente nivel?</p>
+      <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap">
+        <div class="card" style="text-align:center;min-width:200px">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--sec);margin-bottom:0.5rem">🌐</div>
+          <p style="font-size:0.8rem">Web: <strong style="color:var(--text)">franbc005.github.io/TrabajoLM</strong></p>
+        </div>
+        <div class="card" style="text-align:center;min-width:200px">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--sec);margin-bottom:0.5rem">📁</div>
+          <p style="font-size:0.8rem">Repo: <strong style="color:var(--text)">github.com/Franbc005/TrabajoLM</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-slides" id="nav">
+  <button class="nav-btn" id="prevSlide">◂</button>
+  <span class="counter" id="slideCounter">1 / 7</span>
+  <button class="nav-btn" id="nextSlide">▸</button>
+</div>
+
+<script>
+const slides = document.getElementById('slides');
+const total = document.querySelectorAll('.slide').length;
+let current = 0;
+
+function goTo(n){
+  if(n<0)n=0;if(n>=total)n=total-1;current=n;
+  slides.style.transform = `translateX(-${current*100}vw)`;
+  document.getElementById('slideCounter').textContent = `${current+1} / ${total}`;
+}
+
+document.getElementById('prevSlide').addEventListener('click',()=>goTo(current-1));
+document.getElementById('nextSlide').addEventListener('click',()=>goTo(current+1));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')goTo(current+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')goTo(current-1);
+});
+
+// Touch support
+let touchStartX=0;
+document.addEventListener('touchstart',e=>touchStartX=e.changedTouches[0].screenX);
+document.addEventListener('touchend',e=>{
+  const diff=touchStartX-e.changedTouches[0].screenX;
+  if(Math.abs(diff)>50)diff>0?goTo(current+1):goTo(current-1);
+});
+</script>
+</body>
+</html>
